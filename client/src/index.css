@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.14 0.04 260);
+  --foreground: oklch(0.96 0.01 240);
+  --card: oklch(0.19 0.04 260 / 0.55);
+  --card-foreground: oklch(0.96 0.01 240);
+  --popover: oklch(0.18 0.04 260);
+  --popover-foreground: oklch(0.96 0.01 240);
+  --primary: oklch(0.92 0.28 142);
+  --primary-foreground: oklch(0.13 0.04 260);
+  --secondary: oklch(0.26 0.05 260);
+  --secondary-foreground: oklch(0.96 0.01 240);
+  --muted: oklch(0.24 0.04 260);
+  --muted-foreground: oklch(0.68 0.03 250);
+  --accent: oklch(0.78 0.21 245);
+  --accent-foreground: oklch(0.13 0.04 260);
+  --destructive: oklch(0.66 0.32 22);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.96 0.01 240 / 0.10);
+  --input: oklch(0.96 0.01 240 / 0.08);
+  --ring: oklch(0.92 0.28 142 / 0.6);
+
+  --gain: oklch(0.92 0.28 142);
+  --loss: oklch(0.66 0.32 22);
+  --glass-stroke: oklch(1 0 0 / 0.12);
+  --gradient-hero: radial-gradient(1200px 600px at 80% -10%, oklch(0.78 0.21 245 / 0.22), transparent 60%),
+                   radial-gradient(800px 400px at 0% 30%, oklch(0.92 0.28 142 / 0.12), transparent 70%),
+                   linear-gradient(180deg, oklch(0.11 0.04 260), oklch(0.14 0.04 260));
+  --gradient-lime: linear-gradient(135deg, oklch(0.92 0.28 142), oklch(0.78 0.21 195));
+  --gradient-crimson: linear-gradient(135deg, oklch(0.66 0.32 22), oklch(0.55 0.28 8));
+  --shadow-glow-lime: 0 0 40px oklch(0.92 0.28 142 / 0.45), 0 0 80px oklch(0.92 0.28 142 / 0.2);
+  --shadow-glass: 0 8px 32px oklch(0 0 0 / 0.4), inset 0 1px 0 oklch(1 0 0 / 0.08);
+}
+
+@layer base {
+  * { border-color: var(--border); box-sizing: border-box; }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    background-image: var(--gradient-hero);
+    background-attachment: fixed;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  html { color-scheme: dark; }
+}
+
+@layer utilities {
+  .glass {
+    background: linear-gradient(180deg, oklch(1 0 0 / 0.06), oklch(1 0 0 / 0.02));
+    border: 1px solid var(--glass-stroke);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow: var(--shadow-glass);
+  }
+  .glass-strong {
+    background: linear-gradient(180deg, oklch(1 0 0 / 0.10), oklch(1 0 0 / 0.04));
+    border: 1px solid oklch(1 0 0 / 0.18);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: var(--shadow-glass);
+  }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono-custom { font-family: 'JetBrains Mono', monospace; }
+  .text-gain { color: var(--gain); }
+  .text-loss { color: var(--loss); }
+  .bg-gain { background: var(--gradient-lime); }
+  .bg-loss { background: var(--gradient-crimson); }
+  .glow-lime { box-shadow: var(--shadow-glow-lime); }
+  .holo-grid {
+    background-image:
+      linear-gradient(oklch(0.78 0.21 245 / 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.78 0.21 245 / 0.10) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 75%);
+  }
+  @keyframes float-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  @keyframes spin-slow { to{transform:rotate(360deg)} }
+  @keyframes pulse-glow {
+    0%,100%{box-shadow:0 0 30px oklch(0.92 0.28 142/0.4);}
+    50%{box-shadow:0 0 60px oklch(0.92 0.28 142/0.8);}
+  }
+  @keyframes ticker-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes fade-in-up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .animate-float { animation: float-slow 6s ease-in-out infinite; }
+  .animate-spin-slow { animation: spin-slow 30s linear infinite; }
+  .animate-pulse-glow { animation: pulse-glow 2.4s ease-in-out infinite; }
+  .animate-ticker { animation: ticker-scroll 55s linear infinite; }
+  .animate-fade-up { animation: fade-in-up 0.5s ease both; }
+}
