@@ -1,8 +1,16 @@
-import { createVercelHttpHandler } from "@trpc/server/adapters/vercel";
+﻿import { createExpressMiddleware } from "@trpc/server/adapters/express";
+import express from "express";
 import { appRouter } from "../server/routers";
 import { createContext } from "../server/_core/context";
 
-export default createVercelHttpHandler({
-  router: appRouter,
-  createContext,
-});
+const app = express();
+app.use(express.json());
+app.use(
+  "/api/trpc",
+  createExpressMiddleware({
+    router: appRouter,
+    createContext,
+  })
+);
+
+export default app;
