@@ -1,1 +1,1 @@
-﻿{"version":2,"rewrites":[{"source":"/api/trpc/:path*","destination":"/api/trpc"},{"source":"/(.*)","destination":"/index.html"}]}
+{"version":2,"rewrites":[{"source":"/api/(.*)","destination":"/api/trpc"},{"source":"/(.*)","destination":"/index.html"}]}
